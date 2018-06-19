@@ -51,14 +51,15 @@ int main(int argc, char **argv){
 
 	while(n.ok()){
 		if(hand.right_hand.is_present){
-			cmd.linear.x = in_X - X;
-			cmd.angular.z = Y - in_Y ;
+			cmd.linear.x = 4*(in_X - X);
+			cmd.angular.z = (Y - in_Y)/2 ;
 			ROS_INFO("V: %f R: %f",in_X - X,Y - in_Y);
 			vel.publish(cmd);
 		}
 		else{
 			cmd.linear.x = 0.0;
 			cmd.angular.z = 0.0;
+			vel.publish(cmd);
 		}
 		ros::spinOnce();
 	}
